@@ -58,7 +58,7 @@ impl Twatch<'static> {
     pub fn new(peripherals: Peripherals, eventloop: EspNotify) -> Self {
         let pins = peripherals.pins;
         let backlight = pins
-            .gpio12
+            .gpio15
             .into_output()
             .expect("Error setting gpio12 to output");
         let dc = pins

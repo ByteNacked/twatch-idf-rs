@@ -8,7 +8,7 @@ use embedded_graphics_framebuf::{AsWords, FrameBuf};
 use embedded_hal_0_2::blocking::delay::DelayUs;
 
 use esp_idf_hal::{
-    gpio::{Gpio12, Output},
+    gpio::{Gpio15, Output},
     ledc::{config::TimerConfig, Channel, Timer, CHANNEL0, TIMER0},
     prelude::*,
 };
@@ -50,12 +50,12 @@ impl OriginDimensions for TwatchDisplay {
 }
 
 pub struct Backlight {
-    channel: Channel<CHANNEL0, TIMER0, Arc<Timer<TIMER0>>, Gpio12<Output>>,
+    channel: Channel<CHANNEL0, TIMER0, Arc<Timer<TIMER0>>, Gpio15<Output>>,
     level: u32,
 }
 
 impl Backlight {
-    pub fn new(channel: CHANNEL0, timer: TIMER0, backlight: Gpio12<Output>) -> Self {
+    pub fn new(channel: CHANNEL0, timer: TIMER0, backlight: Gpio15<Output>) -> Self {
         let config = TimerConfig::default().frequency(5.kHz().into());
         let timer0 =
             Arc::new(Timer::new(timer, &config).expect("Unable to create timer for backlight"));

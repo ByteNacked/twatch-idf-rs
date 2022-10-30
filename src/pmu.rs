@@ -50,6 +50,13 @@ impl Pmu<'static> {
             .map_err(crate::twatch::TwatchError::from)?;
         self.axp20x
             .set_power_output(
+                axp20x::Power::Ldo3,
+                axp20x::PowerState::Off,
+                &mut delay::Ets,
+            )
+            .map_err(crate::twatch::TwatchError::from)?;
+        self.axp20x
+            .set_power_output(
                 axp20x::Power::Ldo4,
                 axp20x::PowerState::Off,
                 &mut delay::Ets,
